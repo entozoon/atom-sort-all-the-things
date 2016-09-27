@@ -11,7 +11,7 @@ All of the following commands are under the `atom-text-editor` selector.
 If any lines are selected in the active buffer, the commands operate on the selected lines. Otherwise, the commands operate on all lines in the active buffer.
 
 |Keypress|Command|Description|
-|Keypress|Command|-----------|
+|--------|-------|-----------|
 ||`sort-lines:sort`|Sorts the lines (case sensitive)|
 ||`sort-lines:case-insensitive-sort`|Sorts the lines (case insensitive)|
 ||`sort-lines:natural`|Sorts the lines (["natural" order](https://en.wikipedia.org/wiki/Natural_sort_order))|
