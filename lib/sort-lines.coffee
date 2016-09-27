@@ -61,6 +61,8 @@ sortAllTheThings = (editor) ->
   sortTextLines editor, (textLines) ->
     naturalSortRegex = /^(\d*)(\D*)(\d*)([\s\S]*)$/
     textLines.sort (a, b) =>
+      a = a.toLowerCase();
+      b = b.toLowerCase();
       return 0 if a is b
       [__, aLeadingNum, aWord, aTrailingNum, aRemainder] = naturalSortRegex.exec(a)
       [__, bLeadingNum, bWord, bTrailingNum, bRemainder] = naturalSortRegex.exec(b)
@@ -68,3 +70,4 @@ sortAllTheThings = (editor) ->
       return (if aLeadingNum < bLeadingNum then -1 else 1) if aLeadingNum isnt bLeadingNum
       return (if aTrailingNum < bTrailingNum then -1 else 1) if aTrailingNum isnt bTrailingNum
       return 0
+    textLines.filter (value, index, self) -> self.indexOf(value) == index
