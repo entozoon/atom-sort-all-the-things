@@ -27,6 +27,11 @@ describe "sorting lines", ->
     waitsForPromise -> activationPromise
     runs(callback)
 
+  sortAllTheThings = (callback) ->
+    atom.commands.dispatch editorView, "sort-lines:sort-all-the-things"
+    waitsForPromise -> activationPromise
+    runs(callback)
+
   beforeEach ->
     waitsForPromise ->
       atom.workspace.open()

@@ -18,6 +18,9 @@ module.exports =
       'sort-lines:natural': ->
         editor = atom.workspace.getActiveTextEditor()
         sortLinesNatural(editor)
+      'sort-lines:sort-all-the-things': ->
+        editor = atom.workspace.getActiveTextEditor()
+        sortAllTheThings(editor)
 
 sortTextLines = (editor, sorter) ->
   sortableRanges = RangeFinder.rangesFor(editor)
@@ -43,6 +46,18 @@ sortLinesInsensitive = (editor) ->
     textLines.sort (a, b) -> a.toLowerCase().localeCompare(b.toLowerCase())
 
 sortLinesNatural = (editor) ->
+  sortTextLines editor, (textLines) ->
+    naturalSortRegex = /^(\d*)(\D*)(\d*)([\s\S]*)$/
+    textLines.sort (a, b) =>
+      return 0 if a is b
+      [__, aLeadingNum, aWord, aTrailingNum, aRemainder] = naturalSortRegex.exec(a)
+      [__, bLeadingNum, bWord, bTrailingNum, bRemainder] = naturalSortRegex.exec(b)
+      return (if a < b then -1 else 1) if aWord isnt bWord
+      return (if aLeadingNum < bLeadingNum then -1 else 1) if aLeadingNum isnt bLeadingNum
+      return (if aTrailingNum < bTrailingNum then -1 else 1) if aTrailingNum isnt bTrailingNum
+      return 0
+
+sortAllTheThings = (editor) ->
   sortTextLines editor, (textLines) ->
     naturalSortRegex = /^(\d*)(\D*)(\d*)([\s\S]*)$/
     textLines.sort (a, b) =>
