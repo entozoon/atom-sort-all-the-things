@@ -70,4 +70,12 @@ sortAllTheThings = (editor) ->
       return (if aLeadingNum < bLeadingNum then -1 else 1) if aLeadingNum isnt bLeadingNum
       return (if aTrailingNum < bTrailingNum then -1 else 1) if aTrailingNum isnt bTrailingNum
       return 0
-    textLines.filter (value, index, self) -> self.indexOf(value) == index
+	# Originally filtered duplicates - but only case sensitive
+    #textLines.filter (value, index, self) -> self.indexOf(value) == index
+    # Now it filters duplicates case insensitively, keeping the last occurrence
+    temp = textLines[0..textLines.length]
+    i = 0
+    while i < temp.length
+        temp[i] = temp[i].toUpperCase();
+        i++
+    textLines.filter (value, index, self) -> temp.indexOf(value.toUpperCase()) == index
