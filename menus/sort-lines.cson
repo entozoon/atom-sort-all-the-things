@@ -1,8 +1,26 @@
+'context-menu':
+	'atom-text-editor': [
+		{
+			'label': 'Sort Lines'
+			'submenu': [
+      'label': 'Lines'
+      'submenu': [
+        { 'label': 'Sort', 'command': 'sort-lines:sort' }
+        { 'label': 'Reverse Sort', 'command': 'sort-lines:reverse-sort' }
+        { 'label': 'Unique', 'command': 'sort-lines:unique' }
+        { 'label': 'Sort (Case Insensitive)', 'command': 'sort-lines:case-insensitive-sort' }
+        { 'label': 'Natural', 'command': 'sort-lines:natural' }
+        { 'label': 'Sort All The Things', 'command': 'sort-lines:sort-all-the-things' }
+      ]
+    ]
+		}
+	]
+
 'menu': [
   {
     'label': 'Edit'
     'submenu': [
-      'label': 'Lines'
+      'label': 'Sort Lines'
       'submenu': [
         { 'label': 'Sort', 'command': 'sort-lines:sort' }
         { 'label': 'Reverse Sort', 'command': 'sort-lines:reverse-sort' }
